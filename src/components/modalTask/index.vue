@@ -40,17 +40,17 @@ export default defineComponent({
      editTask() {
       const store = checkListStore();
        if (this.currentSelectedOption) {
-   const result = store.editTask(this.currentSelectedOption);
-       if (typeof result === 'string') {
-        // Trate o resultado da função addNewTask de acordo com a sua necessidade
-        if(result === 'error') {
-            this.error = 'Já existe uma tarefa com esse titulo'
-            return ;
-        }else {
-            this.error = ''
-            this.$emit('save'); // Emitir o evento 'save'
+        const result = store.editTask(this.currentSelectedOption);
+        if (typeof result === 'string') {
+          // Trate o resultado da função addNewTask de acordo com a sua necessidade
+          if(result === 'error') {
+              this.error = 'Já existe uma tarefa com esse titulo'
+              return ;
+          }else {
+              this.error = ''
+              this.$emit('save'); // Emitir o evento 'save'
+          }
         }
-      }
        }
    
     },
@@ -77,7 +77,7 @@ export default defineComponent({
       </p>
         <div class="flex justify-end">
           <button type="button" class="mr-2 px-4 py-2 border rounded text-gray-600" @click="$emit('cancel')">Cancelar</button>
-          <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded"  @click="saveTask()">Salvar</button>
+          <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded"  @click="saveTask()" v-if="title.length > 0 ">Salvar</button>
         </div>
       </div>
     </div>

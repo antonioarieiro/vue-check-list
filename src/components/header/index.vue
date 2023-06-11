@@ -27,16 +27,11 @@ export default defineComponent({
       </button>
       <button
         class="text-white bg-green-500 px-4 py-2 rounded hover:bg-green-600"
-        @click="changeTabSelected('concluidas')"
+        @click="changeTabSelected('concluido')"
       >
         Tarefas Concluídas
       </button>
-      <button
-        class="text-white bg-red-500 px-4 py-2 rounded hover:bg-red-600"
-        @click="changeTabSelected('a-concluir')"
-      >
-        Tarefas a Concluir
-      </button>
+   
     </nav>
   </header>
 </template>
