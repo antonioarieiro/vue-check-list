@@ -1,12 +1,11 @@
 import { defineStore } from "pinia";
+import { CheckListStoreState } from "../interfaces/index";
 
-interface CheckListStoreState {
-  selectedOption: string;
-}
 
 export const checkListStore = defineStore("checkListStore", {
   state: (): CheckListStoreState => ({
     selectedOption: "",
+    tasks:[]
   }),
   getters: {
     // Add your store getters here
@@ -16,5 +15,18 @@ export const checkListStore = defineStore("checkListStore", {
       this.selectedOption = option;
       console.log(this.selectedOption);
     },
+
+    addNewTask(this:CheckListStoreState, title:string, description:string) {
+     const existingTask = this.tasks.find((task) => task.title === title);
+
+     if (existingTask) {
+       return "error";
+     }
+
+  
+     this.tasks.push({ title, description });
+
+     return "Nova tarefa criado com sucesso";
+    }
   },
 });
