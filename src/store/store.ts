@@ -1,13 +1,20 @@
 import { defineStore } from "pinia";
 
-export const useMyStore = defineStore("myStore", {
-  state: () => ({
-    // Add your store state here
+interface CheckListStoreState {
+  selectedOption: string;
+}
+
+export const checkListStore = defineStore("checkListStore", {
+  state: (): CheckListStoreState => ({
+    selectedOption: "",
   }),
   getters: {
     // Add your store getters here
   },
   actions: {
-    // Add your store actions here
+    setSelectedTab(this: CheckListStoreState, option: string) {
+      this.selectedOption = option;
+      console.log(this.selectedOption);
+    },
   },
 });
