@@ -1,10 +1,13 @@
-interface tasks {
+export interface Task {
     title: string
     description: string
     status: string
+    id: number
 }
 
 export interface CheckListStoreState {
   selectedOption: string;
-  tasks: Array<tasks>;
+  id: number
+  tasks: Array<Task>;
+  currentSelectedOption: Task | null
 }

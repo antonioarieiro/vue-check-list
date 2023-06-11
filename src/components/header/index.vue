@@ -21,7 +21,7 @@ export default defineComponent({
     <nav class="space-x-4">
       <button
         class="text-white bg-blue-500 px-4 py-2 rounded hover:bg-blue-600 ml-4"
-        @click="changeTabSelected('criar')"
+        @click="changeTabSelected('create')"
       >
         Criar Tarefa
       </button>

@@ -2,14 +2,22 @@
 import { ref, watch } from 'vue';
 import { checkListStore } from './store/store';
 import Header from './components/header/index.vue';
-import AddTask from './components/addTask/index.vue';
+import AddTask from './components/modalTask/index.vue';
 import ListTasks from './components/list/index.vue';
+import AlertStatus from './components/alertStatus/index.vue';
+
+
 const store = checkListStore();
 const selectedOption = ref(store.selectedOption);
+const currentSelectedOption =  ref(store.currentSelectedOption);
 const showSuccessMessage = ref(false);
 
 watch(() => store.selectedOption, (newValue) => {
   selectedOption.value = newValue;
+});
+
+watch(() => store.currentSelectedOption, (newValue) => {
+  currentSelectedOption.value = newValue;
 });
 
 function handleSave() {
@@ -25,10 +33,8 @@ function handleSave() {
 <template>
   <div>
     <Header></Header>
-    <AddTask v-if="selectedOption === 'criar'" @cancel="store.setSelectedTab('')"  @save="handleSave"/>
-    <div class="mt-4 flex w-full items-end justify-end absolute">
-      <p v-if="showSuccessMessage" class="text-green-500 font-bold text-end border rounded-lg p-4 mr-10">Tarefa salva com sucesso!</p>
-    </div>
+    <AddTask :selectedOption="selectedOption" :currentSelectedOption="currentSelectedOption" v-if="selectedOption === 'create' || selectedOption === 'edit'" @cancel="store.setSelectedTab('')"  @save="handleSave"/>
+    <AlertStatus  v-if="showSuccessMessage"/>
     <ListTasks />
   </div>
 </template>
