@@ -24,7 +24,7 @@ export const checkListStore = defineStore("checkListStore", {
      }
 
   
-     this.tasks.push({ title, description });
+     this.tasks.push({ title, description, status: "Pendente" });
 
      return "Nova tarefa criado com sucesso";
     }

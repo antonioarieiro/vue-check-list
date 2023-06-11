@@ -1,6 +1,7 @@
 interface tasks {
     title: string
     description: string
+    status: string
 }
 
 export interface CheckListStoreState {
