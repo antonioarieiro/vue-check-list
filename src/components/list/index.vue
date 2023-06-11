@@ -3,8 +3,13 @@ import { computed } from 'vue';
 import { checkListStore } from '../../store/store';
 
 const store = checkListStore();
-const tasks = computed(() => store.tasks);
-
+const tasks = computed(() => {
+  if (store.selectedOption === 'concluido') {
+    return store.tasks.filter(task => task.status === 'Concluido');
+  } else {
+    return store.tasks;
+  }
+});
 </script>
 
 <template>
